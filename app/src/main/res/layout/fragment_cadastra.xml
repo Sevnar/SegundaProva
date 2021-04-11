@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.segundaprova.CadastraFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/nomeEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Nome"
+            android:text="@{viewModel.nome}"
+            android:afterTextChanged="@{(view)-> viewModel.nomeChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/religiaoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Religião"
+            android:text="@{viewModel.religiao}"
+            android:afterTextChanged="@{(view)-> viewModel.religiaoChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeEditText" />
+
+        <EditText
+            android:id="@+id/entidadeEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Entidade"
+            android:text="@{viewModel.entidade}"
+            android:afterTextChanged="@{(view)-> viewModel.entidadeChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/religiaoEditText" />
+
+        <EditText
+            android:id="@+id/enderecoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Endereço"
+            android:text="@{viewModel.endereco}"
+            android:afterTextChanged="@{(view)-> viewModel.enderecoChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/entidadeEditText" />
+
+        <EditText
+            android:id="@+id/liderEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Líder"
+            android:text="@{viewModel.lider}"
+            android:afterTextChanged="@{(view)-> viewModel.liderChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enderecoEditText" />
+
+        <EditText
+            android:id="@+id/inauguracaoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Ano de Inauguração"
+            android:text="@{viewModel.inauguracao.toString()}"
+            android:afterTextChanged="@{(view)-> viewModel.inauguracaoChanged(view)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/liderEditText" />
+
+        <Button
+            android:id="@+id/cadastraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="140dp"
+            android:text="Cadastrar"
+            android:onClick="@{()-> viewModel.insertTask()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inauguracaoEditText" />
+
+        <Button
+            android:id="@+id/cancelarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:text="Cancelar"
+            app:layout_constraintStart_toEndOf="@+id/cadastraButton"
+            app:layout_constraintTop_toTopOf="@+id/cadastraButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
