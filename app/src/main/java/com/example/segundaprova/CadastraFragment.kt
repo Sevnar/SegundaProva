@@ -21,7 +21,6 @@ class CadastraFragment : Fragment() {
         viewModel = ViewModelProvider(this,viewModelFactory).get(CadastraFragmentViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
         return binding.root
     }
 
