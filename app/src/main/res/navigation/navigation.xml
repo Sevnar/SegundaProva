@@ -8,6 +8,31 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.segundaprova.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Suas Capelas"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_cadastraFragment"
+            app:destination="@id/cadastraFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detalhesFragment"
+            app:destination="@id/detalhesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sobreFragment"
+        android:name="com.example.segundaprova.SobreFragment"
+        android:label="Sobre"
+        tools:layout="@layout/fragment_sobre"/>
+    <fragment
+        android:id="@+id/cadastraFragment"
+        android:name="com.example.segundaprova.CadastraFragment"
+        android:label="Cadastrar" />
+    <fragment
+        android:id="@+id/detalhesFragment"
+        android:name="com.example.segundaprova.DetalhesFragment"
+        android:label="Detalhes" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+
 </navigation>

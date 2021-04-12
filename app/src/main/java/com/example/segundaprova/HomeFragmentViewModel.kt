@@ -22,15 +22,10 @@ class HomeFragmentViewModel(application: Application): AndroidViewModel(applicat
         _igrejas.value = ListAllTask(db).execute().get()
     }
 
-    @SuppressLint("StaticFieldLeak")
     private inner class ListAllTask(var db:IgrejaDatabase): AsyncTask<Igreja, Int, List<Igreja>>(){
-
-
         override fun doInBackground(vararg params: Igreja?): List<Igreja> {
             return db.IgrejaDao().listAll()
         }
-
     }
-
 }
 

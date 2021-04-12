@@ -1,6 +1,5 @@
 package com.example.segundaprova
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.os.AsyncTask
 import android.text.Editable
@@ -10,11 +9,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 
 @Suppress("DEPRECATION")
-class CadastraFragmentViewModel(application: Application): AndroidViewModel(application) {
+class AlteraFragmentViewModel(application: Application): AndroidViewModel(application) {
+
     var app:Application
+    var banco:IgrejaDatabase
+
     init {
         app = application
+
+        val db:IgrejaDatabase by lazy {
+            Room.databaseBuilder(app.applicationContext,IgrejaDatabase::class.java, "Igrejas.sqlite")
+                .build()
+        }
+        banco = db
+        //val igreja = FindTask(db,)
     }
+
+
+
+    private var id:Long = 0
 
     private var _nome = MutableLiveData<String>()
     var nome: LiveData<String> = _nome
@@ -58,24 +71,22 @@ class CadastraFragmentViewModel(application: Application): AndroidViewModel(appl
         _inauguracao.value = Integer.parseInt(editable.toString())
     }
 
-    fun insertTask(){
-        val db:IgrejaDatabase by lazy {
-            Room.databaseBuilder(app.applicationContext, IgrejaDatabase::class.java, "Igrejas.sqlite")
-                .build()
-        }
+    fun updateTask(){
 
-        val igreja = Igreja(_nome.value!!,_religiao.value!!, _entidade.value!!, _endereco.value!!, _lider.value!!, _inauguracao.value!!)
-        InsertTask(db, igreja).execute()
+       //UpdateTask(banco, igreja).execute()
     }
 
-    private inner class InsertTask(var db:IgrejaDatabase, var igreja: Igreja): AsyncTask<Igreja, Int, Any>(){
+    private inner class FindTask(var db:IgrejaDatabase, var id:Long): AsyncTask<Long, Int, Igreja>(){
+        override fun doInBackground(vararg params: Long?): Igreja {
+            return db.IgrejaDao().findById(id)
+        }
+    }
 
 
-        override fun doInBackground(vararg params: Igreja?): Any {
-            db.IgrejaDao().insert(igreja)
+    private inner class UpdateTask(var db:IgrejaDatabase, var igreja: Igreja): AsyncTask<Igreja, Int, Boolean>(){
+        override fun doInBackground(vararg params: Igreja?): Boolean {
+            db.IgrejaDao().edit(igreja)
             return true
         }
-
     }
-
 }
